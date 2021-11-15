@@ -145,7 +145,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
  alias cat='bat'
 
  #dotfiles
- alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+ alias c='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
  
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
