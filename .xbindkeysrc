@@ -47,7 +47,7 @@
 "sleep 0.2 ; scrot --select --exec 'mv $f ~/Pictures/screenshots'"
   Print + release
 
-"xte 'usleep 5'  'keydown Alt_L' 'key D' 'keyup Alt_L'"
+"xte 'keydown Alt_L' 'key D' 'keyup Alt_L'"
     m:0x0 + c:119 + release
     Delete
 
