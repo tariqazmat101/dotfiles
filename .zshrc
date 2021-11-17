@@ -143,6 +143,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
  alias vimrc='vim ~/.vimrc'
  alias ls='exa -l' 
  alias cat='bat'
+ alias star='vim ~/.config/starship.toml'
 
  #dotfiles
  alias c='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -150,6 +151,8 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH=$PATH:/home/tariq/.local/bin:/home/tariq/bin
+
+export STARSHIP_CONFIG=~/.starship/config.toml
 
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
