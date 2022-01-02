@@ -103,7 +103,35 @@ setopt SHARE_HISTORY
 
 
 
+start(){
+  echo "hello world"
+}
 
+#Search function
+#The following example uses fzf as the selector interface for ripgrep. 
+#We bound reload action to change event, so every time you type on fzf, 
+#the ripgrep process will restart with the updated query string denoted by
+#the placeholder expression {q}. Also, note that we used --disabled option 
+#so that fzf doesn't perform any secondary filtering.
+s(){
+  INITIAL_QUERY=""
+RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+  fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+      --ansi --disabled --query "$INITIAL_QUERY" \
+      --height=50% --layout=reverse
+    }
+c(){
+
+}
+
+proc(){
+  FZF_DEFAULT_COMMAND='ps -ef' \
+  fzf --bind 'ctrl-r:reload($FZF_DEFAULT_COMMAND)' \
+      --header 'Press CTRL-R to reload' --header-lines=1 \
+      --height=50% --layout=reverse
+
+}
 
 
 #save all history acrosss all shell instances
@@ -142,19 +170,25 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
  alias shell='aws-shell'
  alias vimrc='vim ~/.vimrc'
  alias ls='exa -l' 
- alias cat='bat'
+ alias cat='bat --paging never --color always'
  alias star='vim ~/.config/starship.toml'
+ alias dc='docker-compose'
 
  #dotfiles
  alias c='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
  
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH=$PATH:/home/tariq/.local/bin:/home/tariq/bin
+export PATH=$PATH:/home/tariq/.local/bin:/home/tariq/bin:/home/tariq/Downloads/Postman:/home/tariq/Downloads/apache-maven-3.8.4/bin
+
+export JAVA_HOME=/opt/jdk-17
+export PATH=$PATH:$JAVA_HOME/bin
+export PATH=$PATH:/usr/local/cuda/bin
 
 export STARSHIP_CONFIG=~/.starship/config.toml
 
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
+export PATH=$PATH:/home/tariq/Downloads/android-studio-2020.3.1.26-linux/android-studio/bin
 
 eval "$(starship init zsh)"
